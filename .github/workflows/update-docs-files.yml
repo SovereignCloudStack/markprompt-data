@@ -14,36 +14,16 @@ jobs:
         with:
           ref: main
       - name: Get files
-        id: get_files
         run: |
           curl -s https://raw.githubusercontent.com/SovereignCloudStack/docs-page/main/docs.package.json > docs.package.json
-          jq -c '.[]' docs.package.json | while read i; do
-            repo=$(echo "$i" | jq -r '.repo')
-            source_dir=$(echo "$i" | jq -r '.source')
-            target_dir=$(echo "$i" | jq -r '.target')
-            label=$(echo "$i" | jq -r '.label')
-            repo_path="$HOME/$repo"
-            target_path="$GITHUB_WORKSPACE"
-            if [ ! -d "$repo_path" ]; then
-              git clone "https://github.com/$repo.git" "$repo_path"
-            else
-              cd "$repo_path"
-              git pull
-              cd "$GITHUB_WORKSPACE"
-            fi
-            if [ -z "$label" ]; then
-              label=$(basename "$source_dir")
-            fi
-            mkdir -p "$target_path/$target_dir/$label"
-            cp -R "$repo_path/$source_dir/." "$target_path/$target_dir/$label/"
-          done
+          cat docs.package.json | jq -r '.[] | "git clone --depth 1 --single-branch https://github.com/\(.repo) && cp -r \(.source) \(.label) && rm -rf \(.repo)"' | bash
       - name: Update README
         run: |
           echo "# Markprompt Data" > README.md
           echo "" >> README.md
           echo "This repository contains the following files:" >> README.md
           echo "" >> README.md
-          find . -type f | grep -v README.md >> README.md
+          ls -1 | grep -v README.md >> README.md
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
