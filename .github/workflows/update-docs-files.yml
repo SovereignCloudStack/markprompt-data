@@ -1,31 +1,78 @@
 name: Update Markprompt Data
 
 on:
+  workflow_call:
+    secrets:
+      PAT:
+        required: true
   workflow_dispatch:
   schedule:
     - cron: "0 0 * * *"
 
 jobs:
-  update_data:
-    runs-on: ubuntu-latest
+  clone-and-copy-docs:
+    runs-on: ubuntu-latest # or whatever OS you want to run this on
+
     steps:
-      - name: Checkout repo
+      - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          ref: main
-      - name: Get files
+
+      - name: Install dependencies
+        run: npm install
+  
+      - name: Remove existing files
         run: |
-          curl -s https://raw.githubusercontent.com/SovereignCloudStack/docs-page/main/docs.package.json > docs.package.json
-          cat docs.package.json | jq -r '.[] | "git clone --depth 1 --single-branch https://github.com/\(.repo) && cp -r \(.source) \(.label) && rm -rf \(.repo)"' | bash
-      - name: Update README
+          rm -rf "/docs"
+          rm -rf "/community"
+          rm -rf "/standards"
+
+      - name: Clone and copy docs
         run: |
-          echo "# Markprompt Data" > README.md
-          echo "" >> README.md
-          echo "This repository contains the following files:" >> README.md
-          echo "" >> README.md
-          ls -1 | grep -v README.md >> README.md
-      - name: Commit and push changes
-        uses: stefanzweifel/git-auto-commit-action@v4
+          const fs = require('fs')
+          const { execSync } = require('child_process')
+
+          // Read the contents of the "docs.package.json" file and remove all whitespace
+          const reposJson = fs.readFileSync('./docs.package.json', 'utf8').replace(/\s/g, '')
+
+          // Parse the JSON and create an array of repositories
+          const repos = JSON.parse(reposJson)
+          const ghUrl = 'https://github.com/'
+
+          // Clone each repository, remove git folders and README files, and copy the docs to the target directory
+          repos.forEach((repo) => {
+            const repoDir = `repo_to_be_edited/${repo.label}`
+
+            // Clone the repository
+            const cloneCommand = `git clone ${ghUrl + repo.repo} ${repoDir}`
+            execSync(cloneCommand)
+
+            // Remove git folders
+            const removeGitCommand = `rm -rf ${repoDir}/.git`
+            execSync(removeGitCommand)
+
+            // Remove README files
+            const removeReadmeCommand = `find ${repoDir} -name "README.md" | xargs rm -f`
+            execSync(removeReadmeCommand)
+
+            // Create the docusaurus subdirectory
+            const subDirPath = `${repo.target}/${repo.label}`
+            fs.mkdirSync(subDirPath, { recursive: true })
+
+            // Copy docs content from A to B
+            const copyDocsCommand = `cp -r ${repoDir}/${repo.source} ${subDirPath}`
+            execSync(copyDocsCommand)
+
+            // Remove the cloned repository
+            const removeRepoCommand = 'rm -rf repo_to_be_edited'
+            execSync(removeRepoCommand)
+          })
+                
+      - name: commit and push
+        uses: EndBug/add-and-commit@v9
         with:
-          commit_message: "Update Markprompt Data"
-          commit_options: "--no-verify"
+          author_name: 'bot@scs'
+          committer_name: Action Bot
+          commit: --signoff
+          message: "update docs"
+          push: true
+          pull: --rebase --autostash
