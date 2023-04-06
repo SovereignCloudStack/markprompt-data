@@ -18,7 +18,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Remove existing files
+      - name: Clean-Up
         run: |
           rm -rf "/docs"
           rm -rf "/community"
@@ -37,6 +37,9 @@ jobs:
             LABEL=$(echo "$line" | jq -r '.label')
             SOURCE=$(echo "$line" | jq -r '.source')
             TARGET=$(echo "$line" | jq -r '.target')
+            
+            # Clean-Up
+            rm -rf "repo_to_be_edited"
 
             # Clone the repo
             REPO_DIR="repo_to_be_edited/$LABEL"
