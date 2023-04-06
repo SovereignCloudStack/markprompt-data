@@ -54,7 +54,12 @@ jobs:
             # Copy the docs to the target directory
             SUB_DIR_PATH="$TARGET/$LABEL"
             mkdir -p "$SUB_DIR_PATH"
-            cp -r "$REPO_DIR/$SOURCE" "$SUB_DIR_PATH"
+
+            if [[ "$SOURCE" == *".md" ]]; then
+              cp "$REPO_DIR/$SOURCE" "$SUB_DIR_PATH"
+            else
+              cp -r "$REPO_DIR/$SOURCE" "$SUB_DIR_PATH"
+            fi
           done < <(echo "$REPOS" | jq -c '.[]')
 
           # Remove the cloned repos
