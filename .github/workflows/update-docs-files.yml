@@ -23,6 +23,7 @@ jobs:
           rm -rf "/docs"
           rm -rf "/community"
           rm -rf "/standards"
+          rm -rf "repo_to_be_edited"
 
       - name: Clone and copy docs
         run: |
