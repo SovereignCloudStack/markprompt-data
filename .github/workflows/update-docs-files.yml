@@ -17,7 +17,7 @@ jobs:
         id: get_files
         run: |
           curl -s https://raw.githubusercontent.com/SovereignCloudStack/docs-page/main/docs.package.json > docs.package.json
-          cat docs.package.json | jq -r '.[].path' | xargs -I{} curl -s -O {}
+          jq -r '.[].path' docs.package.json | xargs -0 -I{} curl -s -O {}
       - name: Update README
         run: |
           echo "# Markprompt Data" > README.md
