@@ -1,0 +1,32 @@
+name: Update Markprompt Data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  update_data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          ref: main
+      - name: Get files
+        id: get_files
+        run: |
+          curl -s https://raw.githubusercontent.com/SovereignCloudStack/docs-page/main/docs.package.json > docs.package.json
+          cat docs.package.json | jq -r '.[].path' | xargs -I{} curl -s -O {}
+      - name: Update README
+        run: |
+          echo "# Markprompt Data" > README.md
+          echo "" >> README.md
+          echo "This repository contains the following files:" >> README.md
+          echo "" >> README.md
+          ls -1 | grep -v README.md >> README.md
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Update Markprompt Data"
+          commit_options: "--no-verify"
