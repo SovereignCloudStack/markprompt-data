@@ -14,23 +14,28 @@ jobs:
         with:
           ref: main
       - name: Get files
+        id: get_files
         run: |
-          curl -s https://raw.githubusercontent.com/SovereignCloudStack/docs-page/main/docs.package.json \
-          | jq -c '.[] | {repo: .repo, source: .source, target: .target, label: .label}' \
-          | while read -r line; do
-            repo=$(echo $line | jq -r '.repo')
-            source=$(echo $line | jq -r '.source')
-            target=$(echo $line | jq -r '.target')
-            label=$(echo $line | jq -r '.label')
-            git clone --depth 1 "https://github.com/$repo" "$repo"
-            cd "$repo"
-            if [ -z "$label" ]; then
-              cp -r "$source" "../$target/"
+          curl -s https://raw.githubusercontent.com/SovereignCloudStack/docs-page/main/docs.package.json > docs.package.json
+          jq -c '.[]' docs.package.json | while read i; do
+            repo=$(echo "$i" | jq -r '.repo')
+            source_dir=$(echo "$i" | jq -r '.source')
+            target_dir=$(echo "$i" | jq -r '.target')
+            label=$(echo "$i" | jq -r '.label')
+            repo_path="$HOME/$repo"
+            target_path="$GITHUB_WORKSPACE"
+            if [ ! -d "$repo_path" ]; then
+              git clone "https://github.com/$repo.git" "$repo_path"
             else
-              cp -r "$source" "../$target/$label/"
+              cd "$repo_path"
+              git pull
+              cd "$GITHUB_WORKSPACE"
             fi
-            cd ..
-            rm -rf "$repo"
+            if [ -z "$label" ]; then
+              label=$(basename "$source_dir")
+            fi
+            mkdir -p "$target_path/$target_dir/$label"
+            cp -R "$repo_path/$source_dir/." "$target_path/$target_dir/$label/"
           done
       - name: Update README
         run: |
@@ -38,7 +43,7 @@ jobs:
           echo "" >> README.md
           echo "This repository contains the following files:" >> README.md
           echo "" >> README.md
-          find . -type f ! -name README.md | sed 's/^\.\///' >> README.md
+          find . -type f | grep -v README.md >> README.md
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
