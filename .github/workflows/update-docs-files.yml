@@ -17,12 +17,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Clean-Up
-        run: |
-          rm -rf "/docs"
-          rm -rf "/community"
-          rm -rf "/standards"
-          rm -rf "repo_to_be_edited"
       - name: Clone and copy docs
         run: |
           REPOS=$(curl -s https://raw.githubusercontent.com/SovereignCloudStack/docs-page/main/docs.package.json | tr -d '[:space:]')
