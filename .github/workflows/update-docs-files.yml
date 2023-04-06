@@ -69,4 +69,4 @@ jobs:
           git config user.name "Action Bot"
           git add --all
           git commit --signoff -m "update docs"
-          git push origin HEAD
+          git push -f origin HEAD
