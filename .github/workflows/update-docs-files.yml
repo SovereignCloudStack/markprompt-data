@@ -27,8 +27,10 @@ jobs:
         run: |
           REPOS=$(curl -s https://raw.githubusercontent.com/SovereignCloudStack/docs-page/main/docs.package.json | tr -d '[:space:]')
           GH_URL='https://github.com/'
+          
           # Loop through the repos and clone them
           while IFS= read -r line; do
+          
             # Parse the JSON for this repo
             REPO=$(echo "$line" | jq -r '.repo')
             LABEL=$(echo "$line" | jq -r '.label')
@@ -37,28 +39,30 @@ jobs:
             
             # Clean-Up
             rm -rf "repo_to_be_edited"
+            
             # Clone the repo
             REPO_DIR="repo_to_be_edited/$LABEL"
             git clone "$GH_URL$REPO" "$REPO_DIR"
+            
             # Remove the .git directory
             rm -rf "$REPO_DIR/.git"
+            
             # Remove the README file(s)
             find "$REPO_DIR" -name 'README.md' -delete
+            
             # Copy the docs to the target directory
             SUB_DIR_PATH="$TARGET/$LABEL"
             mkdir -p "$SUB_DIR_PATH"
-            if [[ "$SOURCE" == *"/"* ]]; then
-              if [[ -d "$REPO_DIR/$SOURCE" ]]; then
+            if [[ "$SOURCE" == *".md" ]]; then
                 find "$REPO_DIR/$SOURCE" -type f -name "*.md" -exec cp --parents {} "$SUB_DIR_PATH" \;
               else
                 cp -r "$REPO_DIR/$SOURCE" "$SUB_DIR_PATH"
-              fi
-            else
-              cp "$REPO_DIR/$SOURCE" "$SUB_DIR_PATH"
             fi
           done < <(echo "$REPOS" | jq -c '.[]')
+          
           # Remove the cloned repos
           rm -rf "repo_to_be_edited"
+          
       - name: commit and push
         run: |
           git config user.email "bot@scs"
