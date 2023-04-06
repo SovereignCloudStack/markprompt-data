@@ -56,7 +56,7 @@ jobs:
             mkdir -p "$SUB_DIR_PATH"
 
             if [[ "$SOURCE" == *"/"*".md" ]]; then
-              find "$$REPO_DIR/$SOURCE" -type f -name "*.md" -exec cp --parents {} "$SUB_DIR_PATH" \;
+              find "$REPO_DIR/$SOURCE" -type f -name "*.md" -exec cp --parents {} "$SUB_DIR_PATH" \;
             else
               cp "$REPO_DIR/$SOURCE" "$SUB_DIR_PATH"
             fi
