@@ -1,10 +1,6 @@
 name: Update Markprompt Data
 
 on:
-  workflow_call:
-    secrets:
-      PAT:
-        required: true
   workflow_dispatch:
   schedule:
     - cron: "0 0 * * *"
@@ -14,12 +10,14 @@ jobs:
     runs-on: ubuntu-latest # or whatever OS you want to run this on
 
     steps:
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl jq
+
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: npm install
-  
       - name: Remove existing files
         run: |
           rm -rf "/docs"
@@ -28,51 +26,40 @@ jobs:
 
       - name: Clone and copy docs
         run: |
-          const fs = require('fs')
-          const { execSync } = require('child_process')
+          REPOS=$(curl -s https://raw.githubusercontent.com/SovereignCloudStack/docs-page/main/docs.package.json | tr -d '[:space:]')
+          GH_URL='https://github.com/'
 
-          // Read the contents of the "docs.package.json" file and remove all whitespace
-          const reposJson = fs.readFileSync('https://raw.githubusercontent.com/SovereignCloudStack/docs-page/main/docs.package.json, 'utf8').replace(/\s/g, '')
+          # Loop through the repos and clone them
+          while IFS= read -r line; do
+            # Parse the JSON for this repo
+            REPO=$(echo "$line" | jq -r '.repo')
+            LABEL=$(echo "$line" | jq -r '.label')
+            SOURCE=$(echo "$line" | jq -r '.source')
+            TARGET=$(echo "$line" | jq -r '.target')
 
-          // Parse the JSON and create an array of repositories
-          const repos = JSON.parse(reposJson)
-          const ghUrl = 'https://github.com/'
+            # Clone the repo
+            REPO_DIR="repo_to_be_edited/$LABEL"
+            git clone "$GH_URL$REPO" "$REPO_DIR"
 
-          // Clone each repository, remove git folders and README files, and copy the docs to the target directory
-          repos.forEach((repo) => {
-            const repoDir = `repo_to_be_edited/${repo.label}`
+            # Remove the .git directory
+            rm -rf "$REPO_DIR/.git"
 
-            // Clone the repository
-            const cloneCommand = `git clone ${ghUrl + repo.repo} ${repoDir}`
-            execSync(cloneCommand)
+            # Remove the README file(s)
+            find "$REPO_DIR" -name 'README.md' -delete
 
-            // Remove git folders
-            const removeGitCommand = `rm -rf ${repoDir}/.git`
-            execSync(removeGitCommand)
+            # Copy the docs to the target directory
+            SUB_DIR_PATH="$TARGET/$LABEL"
+            mkdir -p "$SUB_DIR_PATH"
+            cp -r "$REPO_DIR/$SOURCE" "$SUB_DIR_PATH"
+          done < <(echo "$REPOS" | jq -c '.[]')
 
-            // Remove README files
-            const removeReadmeCommand = `find ${repoDir} -name "README.md" | xargs rm -f`
-            execSync(removeReadmeCommand)
+          # Remove the cloned repos
+          rm -rf "repo_to_be_edited"
 
-            // Create the docusaurus subdirectory
-            const subDirPath = `${repo.target}/${repo.label}`
-            fs.mkdirSync(subDirPath, { recursive: true })
-
-            // Copy docs content from A to B
-            const copyDocsCommand = `cp -r ${repoDir}/${repo.source} ${subDirPath}`
-            execSync(copyDocsCommand)
-
-            // Remove the cloned repository
-            const removeRepoCommand = 'rm -rf repo_to_be_edited'
-            execSync(removeRepoCommand)
-          })
-                
       - name: commit and push
-        uses: EndBug/add-and-commit@v9
-        with:
-          author_name: 'bot@scs'
-          committer_name: Action Bot
-          commit: --signoff
-          message: "update docs"
-          push: true
-          pull: --rebase --autostash
+        run: |
+          git config user.email "bot@scs"
+          git config user.name "Action Bot"
+          git add --all
+          git commit --signoff -m "update docs"
+          git push
