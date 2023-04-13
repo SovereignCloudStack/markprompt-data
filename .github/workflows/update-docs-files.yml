@@ -25,7 +25,6 @@ jobs:
   
   sync_repos:
     needs: provide_repos_json
-    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 1
