@@ -16,6 +16,9 @@ jobs:
           sudo apt-get install -y curl jq
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Remove existing repo_to_be_edited directory
+        run: |
+          rm -rf "$(pwd)/repo_to_be_edited"
 
       - name: Clone and copy docs
         run: |
