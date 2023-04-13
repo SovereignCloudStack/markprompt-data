@@ -74,5 +74,5 @@ jobs:
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
           git add --all
-          git commit -m "Update docs for ${{matrix.repos.label}}" --allow-empty
+          git commit -m "Update docs for ${{matrix.repos.repo}}" --allow-empty
           git push
