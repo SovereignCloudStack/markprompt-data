@@ -1,4 +1,4 @@
-**NOTE:** This repository is only a snapshot of the files defined in the `docs.package.json` file for training purposes. Do **not** manually commit to this repository.
+**NOTE:** This repository is only a snapshot of the files defined in the [docs.package.json](https://github.com/SovereignCloudStack/docs-page/blob/main/docs.package.json) file for training purposes. Do **not** manually commit to this repository.
 
 ```
 .
