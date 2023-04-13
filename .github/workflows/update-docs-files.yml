@@ -65,7 +65,7 @@ jobs:
 
       - name: update README.md with tree overview
         run: |
-          tree -I '.git' >> README.md
+          tree -I '.git' > README.md
           echo '' >> README.md
           echo '**NOTE:** This repository is only a snapshot of the files defined in the `docs.package.json` file for training purposes. Do **not** manually commit to this repository.' >> README.md
 
