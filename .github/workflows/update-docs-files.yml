@@ -16,9 +16,6 @@ jobs:
           sudo apt-get install -y curl jq
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Remove existing repo_to_be_edited directory
-        run: |
-          rm -rf "$(pwd)/repo_to_be_edited"
 
       - name: Clone and copy docs
         run: |
@@ -33,6 +30,9 @@ jobs:
             LABEL=$(echo "$line" | jq -r '.label')
             SOURCE=$(echo "$line" | jq -r '.source')
             TARGET=$(echo "$line" | jq -r '.target')
+
+            # Remove previous dirs
+            rm -rf "$(pwd)/repo_to_be_edited"
             
             # Clone the repo
             REPO_DIR="$(pwd)/repo_to_be_edited/$LABEL"
