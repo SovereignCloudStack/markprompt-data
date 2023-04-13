@@ -28,6 +28,13 @@
 │       ├── collaboration.md
 │       └── license-considerations.md
 └── docs
+    ├── openstack-image-manager
+    │   ├── configuration.md
+    │   ├── contribute.md
+    │   ├── getting_started.md
+    │   ├── overview.md
+    │   ├── quickstart.md
+    │   └── requirements.md
     ├── operations
     │   ├── iaas
     │   │   └── LBaaS
