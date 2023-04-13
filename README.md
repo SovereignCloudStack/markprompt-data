@@ -1,3 +1,5 @@
+**NOTE:** This repository is only a snapshot of the files defined in the `docs.package.json` file for training purposes. Do **not** manually commit to this repository.
+
 ```
 .
 ├── community
@@ -134,4 +136,3 @@
     ├── scs-0400-v1-status-page-create-decision.md
     └── scs-XXXX-vN-template.md
 ```
-
