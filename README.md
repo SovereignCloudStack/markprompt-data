@@ -28,6 +28,26 @@
 │       ├── collaboration.md
 │       └── license-considerations.md
 └── docs
+    ├── k8s-cluster-api-provider
+    │   └── doc
+    │       ├── usage
+    │       │   ├── cluster-mgmt-capi-mgmt-node.md
+    │       │   ├── create-new-cluster.md
+    │       │   ├── managing-many-clusters.md
+    │       │   ├── multi-az-and-multi-cloud-environments.md
+    │       │   ├── testing.md
+    │       │   └── usage.md
+    │       ├── LoadBalancer-ExtTrafficLocal.md
+    │       ├── Maintenance_and_Troubleshooting.md
+    │       ├── Upgrade-Guide.md
+    │       ├── application-credentials.md
+    │       ├── configuration.md
+    │       ├── getting-started.md
+    │       ├── overview.md
+    │       ├── quickstart.md
+    │       ├── requirements.md
+    │       ├── roadmap.md
+    │       └── teardown.md
     ├── openstack-image-manager
     │   ├── configuration.md
     │   ├── contribute.md
