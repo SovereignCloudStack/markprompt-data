@@ -53,12 +53,42 @@
     │   │   └── intra-SCS-federation-setup-description-for-osism-doc-operations.md
     │   ├── kaas
     │   └── operations
-    └── release-notes
-        ├── Release0.md
-        ├── Release1.md
-        ├── Release2.md
-        ├── Release3.md
-        ├── Release4.md
-        └── ReleaseX.md
+    ├── release-notes
+    │   ├── Release0.md
+    │   ├── Release1.md
+    │   ├── Release2.md
+    │   ├── Release3.md
+    │   ├── Release4.md
+    │   └── ReleaseX.md
+    └── testbed
+        └── doc
+            ├── images
+            │   ├── ara.png
+            │   ├── ceph-dashboard.png
+            │   ├── grafana.png
+            │   ├── homer.png
+            │   ├── horizon-login-identity-testbed.png
+            │   ├── horizon.png
+            │   ├── keycloak.png
+            │   ├── logo.png
+            │   ├── netbox.png
+            │   ├── netdata.png
+            │   ├── overview.png
+            │   ├── patchman.png
+            │   └── stack-topology.png
+            ├── LICENSE
+            ├── authentication.md
+            ├── configuration.md
+            ├── contribute.md
+            ├── getting_started.md
+            ├── important_notes.md
+            ├── license.md
+            ├── networking.md
+            ├── overview.md
+            ├── preparations.md
+            ├── quickstart.md
+            ├── requirements.md
+            ├── requirements.txt
+            └── usage.md
 ```
 
