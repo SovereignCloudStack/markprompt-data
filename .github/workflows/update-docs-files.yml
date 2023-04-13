@@ -40,6 +40,9 @@ jobs:
             
             # Remove the README file(s)
             find "$REPO_DIR" -name 'README.md' | xargs rm -f
+
+            # create subdirs
+            mkdir "$(pwd)/$TARGET/$LABEL" || true
             
             # Copy the docs to the target directory
             SUB_DIR_PATH="$(pwd)/$TARGET/$LABEL"
