@@ -28,23 +28,30 @@
 │       ├── collaboration.md
 │       └── license-considerations.md
 └── docs
-    └── operations
-        ├── iaas
-        │   └── LBaaS
-        │       ├── Amphora-diagram.drawio
-        │       ├── Amphora-diagram.png
-        │       ├── LoadbalancerShema.drawio
-        │       ├── LoadbalancerShema1.png
-        │       ├── dsr.drawio
-        │       ├── dsr.png
-        │       ├── lbaas.md
-        │       ├── natbased.drawio
-        │       ├── natbased.png
-        │       ├── reverse-proxy.drawio
-        │       └── reverse-proxy.png
-        ├── iam
-        │   └── intra-SCS-federation-setup-description-for-osism-doc-operations.md
-        ├── kaas
-        └── operations
+    ├── operations
+    │   ├── iaas
+    │   │   └── LBaaS
+    │   │       ├── Amphora-diagram.drawio
+    │   │       ├── Amphora-diagram.png
+    │   │       ├── LoadbalancerShema.drawio
+    │   │       ├── LoadbalancerShema1.png
+    │   │       ├── dsr.drawio
+    │   │       ├── dsr.png
+    │   │       ├── lbaas.md
+    │   │       ├── natbased.drawio
+    │   │       ├── natbased.png
+    │   │       ├── reverse-proxy.drawio
+    │   │       └── reverse-proxy.png
+    │   ├── iam
+    │   │   └── intra-SCS-federation-setup-description-for-osism-doc-operations.md
+    │   ├── kaas
+    │   └── operations
+    └── release-notes
+        ├── Release0.md
+        ├── Release1.md
+        ├── Release2.md
+        ├── Release3.md
+        ├── Release4.md
+        └── ReleaseX.md
 ```
 
