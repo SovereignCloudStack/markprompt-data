@@ -20,7 +20,7 @@ jobs:
       - name: Set Matrix
         id: set-matrix
         run: |
-          REPOS=$(curl -s https://raw.githubusercontent.com/SovereignCloudStack/docs-page/main/docs.package.json | jq -r '.[] | .repo + " " + .source + " " + .label + " " + .target'
+          REPOS=$(curl -s https://raw.githubusercontent.com/SovereignCloudStack/docs-page/main/docs.package.json | jq -r '.[] | .repo + " " + .source + " " + .label + " " + .target')
           echo "::set-output name=matrix::$REPOS"
   
   sync_repos:
