@@ -65,7 +65,7 @@ jobs:
 
       - name: update README.md with tree overview
         run: |
-          echo '**NOTE:** This repository is only a snapshot of the files defined in the `docs.package.json` file for training purposes. Do **not** manually commit to this repository.' > README.md
+          echo '**NOTE:** This repository is only a snapshot of the files defined in the [docs.package.json](https://github.com/SovereignCloudStack/docs-page/blob/main/docs.package.json) file for training purposes. Do **not** manually commit to this repository.' > README.md
           echo '' >> README.md 
           tree --dirsfirst --noreport -I README.md | sed '1s/^/```\n/;$s/$/\n```/' >> README.md
 
