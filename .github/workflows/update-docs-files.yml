@@ -1,66 +1,78 @@
 name: Update Markprompt Data
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: '0 0 * * *'
+  workflow_call:
+  workflow_dispatch:
 
 jobs:
-  clone-and-copy-docs:
-    runs-on: ubuntu-latest # or whatever OS you want to run this on
-
+  provide_repos_json:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y curl jq
-      - name: Checkout code
+      - name: Checkout the repo B
         uses: actions/checkout@v2
+        with:
+          ref: main
 
-      - name: Clone and copy docs
+      - name: Set Matrix
+        id: set-matrix
         run: |
-          REPOS=$(curl -s https://raw.githubusercontent.com/SovereignCloudStack/docs-page/main/docs.package.json | tr -d '[:space:]')
-          GH_URL='https://github.com/'
-          
-          # Loop through the repos and clone them
-          while IFS= read -r line; do
-          
-            # Parse the JSON for this repo
-            REPO=$(echo "$line" | jq -r '.repo')
-            LABEL=$(echo "$line" | jq -r '.label')
-            SOURCE=$(echo "$line" | jq -r '.source')
-            TARGET=$(echo "$line" | jq -r '.target')
+          REPOS=$(curl -s https://raw.githubusercontent.com/SovereignCloudStack/docs-page/main/docs.package.json | jq -r '.repos[] | .repo + " " + .source + " " + .label + " " + .target')
+          echo "::set-output name=matrix::$REPOS"
+  
+  sync_repos:
+    needs: provide_repos_json
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
+      matrix: 
+        repos: ${{ fromJson(needs.provide_repos_json.outputs.matrix) }}
+    steps: 
+      - name: checkout the repo B
+        uses: actions/checkout@v2
+        with:
+          ref: main
+  
+      - name: clone repo A which is about to be synchronized
+        uses: actions/checkout@v2
+        with:
+          repository: ${{matrix.repos.repo}}
+          ref: main
+          path: 'repo_to_be_edited'
 
-            # Remove previous dirs
-            rm -rf "$(pwd)/repo_to_be_edited"
-            
-            # Clone the repo
-            REPO_DIR="$(pwd)/repo_to_be_edited/$LABEL"
-            git clone "$GH_URL$REPO" "$REPO_DIR"
-            
-            # Remove the README file(s)
-            find "$REPO_DIR" -name 'README.md' | xargs rm -f
-
-            # create subdirs
-            mkdir "$(pwd)/$TARGET/$LABEL" || true
-            
-            # Copy the docs to the target directory
-            SUB_DIR_PATH="$(pwd)/$TARGET/$LABEL"
-            mkdir -p "$SUB_DIR_PATH"
-            if [[ "$SOURCE" == *"*.md"* ]]; then
-                find "$REPO_DIR" -maxdepth 1 -type f -name "*.md" -exec cp --parents {} "$SUB_DIR_PATH" \;
-              else
-                cp -r "$REPO_DIR/$SOURCE" "$SUB_DIR_PATH"
-            fi
-          done < <(echo "$REPOS" | jq -c '.[]')
-          
-          # Remove the cloned repos
-          rm -rf "$(pwd)/repo_to_be_edited"
-          
-      - name: commit and push
+      - name: remove git folders from A
         run: |
-          git config user.email "bot@scs"
-          git config user.name "Action Bot"
+          rm -rf $(pwd)/repo_to_be_edited/.git
+
+      - name: remove README.md files from A
+        run: |
+          find $(pwd)/repo_to_be_edited -name "README.md" | xargs rm -f
+
+      - name: create subdirectory
+        run: |
+          mkdir $(pwd)/${{matrix.repos.target}}/${{matrix.repos.label}} || true
+
+      - name: copy docs content from A to B
+        run: |
+          cp -r $(pwd)/repo_to_be_edited/${{matrix.repos.source}} $(pwd)/${{matrix.repos.target}}/${{matrix.repos.label}}
+          
+      - name: remove repo A
+        run: |
+          rm -rf $(pwd)/repo_to_be_edited/
+
+      - name: update README.md with tree overview
+        run: |
+          tree -I '.git' >> README.md
+          echo '' >> README.md
+          echo '**NOTE:** This repository is only a snapshot of the files defined in the `docs.package.json` file for training purposes. Do **not** manually commit to this repository.' >> README.md
+
+      - name: add and commit changes to B
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
           git add --all
-          git commit --signoff -m "update docs"
-          git push -f origin HEAD
+          git commit -m "Update docs for ${{matrix.repos.label}}"
+          git push
