@@ -61,6 +61,11 @@
     │   ├── Release4.md
     │   └── ReleaseX.md
     └── testbed
+        ├── cloud-in-a-box
+        │   └── doc
+        │       ├── images
+        │       │   └── broken_disk_setup.png
+        │       └── quickstart.md
         └── doc
             ├── images
             │   ├── ara.png
