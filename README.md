@@ -80,6 +80,11 @@
     │   ├── Release3.md
     │   ├── Release4.md
     │   └── ReleaseX.md
+    ├── status-page-openapi
+    │   └── docs
+    │       ├── components.md
+    │       ├── levels_of_consensus.md
+    │       └── overview.md
     └── testbed
         ├── cloud-in-a-box
         │   └── doc
