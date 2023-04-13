@@ -122,17 +122,18 @@
 │           ├── requirements.md
 │           ├── requirements.txt
 │           └── usage.md
-└── standards
-    ├── scs-0001-v1-sovereign-cloud-standards.md
-    ├── scs-0002-v1-standards-docs-org.md
-    ├── scs-0003-v1-sovereign-cloud-standards-yaml.md
-    ├── scs-0100-v2-flavor-naming.md
-    ├── scs-0101-v1-entropy.md
-    ├── scs-0110-v1-ssd-flavors.md
-    ├── scs-0210-v1-k8s-new-version-policy.md
-    ├── scs-0211-v1-kaas-default-storage-class.md
-    ├── scs-0212-v1-requirements-for-container-registry.md
-    ├── scs-0300-v1-requirements-for-sso-identity-federation.md
-    ├── scs-0400-v1-status-page-create-decision.md
-    └── scs-XXXX-vN-template.md
+├── standards
+│   ├── scs-0001-v1-sovereign-cloud-standards.md
+│   ├── scs-0002-v1-standards-docs-org.md
+│   ├── scs-0003-v1-sovereign-cloud-standards-yaml.md
+│   ├── scs-0100-v2-flavor-naming.md
+│   ├── scs-0101-v1-entropy.md
+│   ├── scs-0110-v1-ssd-flavors.md
+│   ├── scs-0210-v1-k8s-new-version-policy.md
+│   ├── scs-0211-v1-kaas-default-storage-class.md
+│   ├── scs-0212-v1-requirements-for-container-registry.md
+│   ├── scs-0300-v1-requirements-for-sso-identity-federation.md
+│   ├── scs-0400-v1-status-page-create-decision.md
+│   └── scs-XXXX-vN-template.md
+└── LICENSE
 ```
