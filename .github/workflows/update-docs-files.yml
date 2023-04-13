@@ -29,7 +29,7 @@ jobs:
     strategy:
       max-parallel: 1
       matrix: 
-        repos: ${{ fromJson(needs.provide_repos_json.outputs.matrix) }}
+        repos: ${{ fromJson(needs.provide_repos_json.outputs.repos) }}
     steps: 
       - name: checkout the repo B
         uses: actions/checkout@v2
