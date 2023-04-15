@@ -87,41 +87,43 @@
 │   │       ├── components.md
 │   │       ├── levels_of_consensus.md
 │   │       └── overview.md
-│   └── testbed
-│       ├── cloud-in-a-box
-│       │   └── doc
-│       │       ├── images
-│       │       │   └── broken_disk_setup.png
-│       │       └── quickstart.md
-│       └── doc
-│           ├── images
-│           │   ├── ara.png
-│           │   ├── ceph-dashboard.png
-│           │   ├── grafana.png
-│           │   ├── homer.png
-│           │   ├── horizon-login-identity-testbed.png
-│           │   ├── horizon.png
-│           │   ├── keycloak.png
-│           │   ├── logo.png
-│           │   ├── netbox.png
-│           │   ├── netdata.png
-│           │   ├── overview.png
-│           │   ├── patchman.png
-│           │   └── stack-topology.png
-│           ├── LICENSE
-│           ├── authentication.md
-│           ├── configuration.md
-│           ├── contribute.md
-│           ├── getting_started.md
-│           ├── important_notes.md
-│           ├── license.md
-│           ├── networking.md
-│           ├── overview.md
-│           ├── preparations.md
-│           ├── quickstart.md
-│           ├── requirements.md
-│           ├── requirements.txt
-│           └── usage.md
+│   ├── testbed
+│   │   ├── cloud-in-a-box
+│   │   │   └── doc
+│   │   │       ├── images
+│   │   │       │   └── broken_disk_setup.png
+│   │   │       └── quickstart.md
+│   │   └── doc
+│   │       ├── images
+│   │       │   ├── ara.png
+│   │       │   ├── ceph-dashboard.png
+│   │       │   ├── grafana.png
+│   │       │   ├── homer.png
+│   │       │   ├── horizon-login-identity-testbed.png
+│   │       │   ├── horizon.png
+│   │       │   ├── keycloak.png
+│   │       │   ├── logo.png
+│   │       │   ├── netbox.png
+│   │       │   ├── netdata.png
+│   │       │   ├── overview.png
+│   │       │   ├── patchman.png
+│   │       │   └── stack-topology.png
+│   │       ├── LICENSE
+│   │       ├── authentication.md
+│   │       ├── configuration.md
+│   │       ├── contribute.md
+│   │       ├── getting_started.md
+│   │       ├── important_notes.md
+│   │       ├── license.md
+│   │       ├── networking.md
+│   │       ├── overview.md
+│   │       ├── preparations.md
+│   │       ├── quickstart.md
+│   │       ├── requirements.md
+│   │       ├── requirements.txt
+│   │       └── usage.md
+│   ├── GLOSSARY.md
+│   └── index.md
 ├── standards
 │   ├── scs-0001-v1-sovereign-cloud-standards.md
 │   ├── scs-0002-v1-standards-docs-org.md
