@@ -123,6 +123,7 @@
 │   │       ├── requirements.txt
 │   │       └── usage.md
 │   ├── GLOSSARY.md
+│   ├── glossary.md
 │   └── index.md
 ├── standards
 │   ├── scs-0001-v1-sovereign-cloud-standards.md
