@@ -131,6 +131,7 @@
 │   ├── scs-0003-v1-sovereign-cloud-standards-yaml.md
 │   ├── scs-0100-v2-flavor-naming.md
 │   ├── scs-0101-v1-entropy.md
+│   ├── scs-0102-v1-image-metadata.md
 │   ├── scs-0110-v1-ssd-flavors.md
 │   ├── scs-0210-v1-k8s-new-version-policy.md
 │   ├── scs-0211-v1-kaas-default-storage-class.md
