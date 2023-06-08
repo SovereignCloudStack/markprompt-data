@@ -134,7 +134,9 @@
 │   ├── scs-0100-v3-flavor-naming.md
 │   ├── scs-0101-v1-entropy.md
 │   ├── scs-0102-v1-image-metadata.md
+│   ├── scs-0110-v1-gnocchi-as-metering-database.md
 │   ├── scs-0110-v1-ssd-flavors.md
+│   ├── scs-0111-v1-publishing_method_for_metering_data.md
 │   ├── scs-0210-v1-k8s-new-version-policy.md
 │   ├── scs-0211-v1-kaas-default-storage-class.md
 │   ├── scs-0212-v1-requirements-for-container-registry.md
