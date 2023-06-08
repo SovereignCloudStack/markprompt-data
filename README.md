@@ -84,6 +84,7 @@
 │   │   └── ReleaseX.md
 │   ├── status-page-openapi
 │   │   └── docs
+│   │       ├── component_overview.md
 │   │       ├── components.md
 │   │       ├── levels_of_consensus.md
 │   │       └── overview.md
