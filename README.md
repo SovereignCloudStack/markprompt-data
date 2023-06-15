@@ -143,6 +143,8 @@
 │   ├── scs-0300-v1-requirements-for-sso-identity-federation.md
 │   ├── scs-0400-v1-status-page-create-decision.md
 │   ├── scs-0401-v1-status-page-reference-implementation-decision.md
+│   ├── scs-0410-v1-gnocchi-as-metering-database.md
+│   ├── scs-0411-v1-publishing_method_for_metering_data.md
 │   └── scs-XXXX-vN-template.md
 └── LICENSE
 ```
