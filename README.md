@@ -113,6 +113,7 @@
 │   │       ├── authentication.md
 │   │       ├── configuration.md
 │   │       ├── contribute.md
+│   │       ├── federation.md
 │   │       ├── getting_started.md
 │   │       ├── important_notes.md
 │   │       ├── license.md
