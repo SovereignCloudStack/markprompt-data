@@ -27,7 +27,7 @@ set will be copied into the `/etc/containerd/certs` directory on each workload c
 The default value of the `containerd_registry_files` variable instructs containerd to use
 `registry.scs.community` container registry instance as a public mirror of DockerHub
 container registry, see related issue [#417](https://github.com/SovereignCloudStack/k8s-cluster-api-provider/issues/417).
-The host config file used as a default is defined [here](../../terraform/files/containerd/docker.io).  
+The host config file used as a default is defined [here](https://github.com/SovereignCloudStack/k8s-cluster-api-provider/blob/1b6ef9d4c64c94bc77144a072e0309d484de54be/terraform/files/containerd/docker.io).  
 This should prevent issues with pull rate limiting from DockerHub public container registry, e.g. [#414](https://github.com/SovereignCloudStack/k8s-cluster-api-provider/issues/414).
 
 The above default value could be overridden using any techniques that Terraform allows, e.g.
@@ -49,7 +49,7 @@ Currently, SCS container registry is set up to "proxy-cache" the following publi
 - registry.gitlab.com
 - registry.k8s.io
 
-Find also a corresponding `containerd` registry host config files in [./terraform/files/containerd](../../terraform/files/containerd)
+Find also a corresponding `containerd` registry host config files in [./terraform/files/containerd](https://github.com/SovereignCloudStack/k8s-cluster-api-provider/tree/4dce164044a13b35a83690540088db2cd8457a8a/terraform/files/containerd)
 directory. If you want to configure `containerd` to use mentioned pre-configured [SCS container registry](https://registry.scs.community)
 "proxy cache" projects, feel free to do that e.g. as follows (path is relative to the `terraform` directory):
 
