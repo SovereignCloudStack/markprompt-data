@@ -101,6 +101,7 @@
 │   │       │   ├── ceph-dashboard.png
 │   │       │   ├── grafana.png
 │   │       │   ├── homer.png
+│   │       │   ├── horizon-create-application-credential.png
 │   │       │   ├── horizon-login-identity-testbed.png
 │   │       │   ├── horizon.png
 │   │       │   ├── keycloak.png
