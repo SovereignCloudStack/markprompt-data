@@ -27,6 +27,8 @@
 │       │   ├── dco-and-licenses.md
 │       │   ├── github-failed-dco.png
 │       │   └── tips-and-tricks.md
+│       ├── hackathons
+│       │   └── checklist.md
 │       ├── collaboration.md
 │       └── license-considerations.md
 ├── docs
