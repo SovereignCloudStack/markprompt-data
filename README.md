@@ -111,6 +111,7 @@
 │   │       │   ├── netbox.png
 │   │       │   ├── netdata.png
 │   │       │   ├── overview.png
+│   │       │   ├── overview.svg
 │   │       │   ├── patchman.png
 │   │       │   └── stack-topology.png
 │   │       ├── LICENSE
