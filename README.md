@@ -16,6 +16,8 @@
 │       │   ├── mailinglists.md
 │       │   └── matrix.md
 │       ├── contribute
+│       │   ├── styleguides
+│       │   │   └── ansible_styleguide.md
 │       │   ├── adding-docs-guide.md
 │       │   ├── doc-files-structure-guide.md
 │       │   ├── docs-workflow-explanation.md
