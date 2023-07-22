@@ -155,6 +155,7 @@
 │   ├── scs-0401-v1-status-page-reference-implementation-decision.md
 │   ├── scs-0410-v1-gnocchi-as-metering-database.md
 │   ├── scs-0411-v1-publishing_method_for_metering_data.md
+│   ├── scs-0412-v1-metering-json.md
 │   └── scs-XXXX-vN-template.md
 └── LICENSE
 ```
