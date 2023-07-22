@@ -50,6 +50,7 @@
 │   │       ├── application-credentials.md
 │   │       ├── configuration.md
 │   │       ├── getting-started.md
+│   │       ├── make-reference.md
 │   │       ├── overview.md
 │   │       ├── quickstart.md
 │   │       ├── requirements.md
