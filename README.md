@@ -151,6 +151,7 @@
 │   ├── scs-0211-v1-kaas-default-storage-class.md
 │   ├── scs-0212-v1-requirements-for-container-registry.md
 │   ├── scs-0300-v1-requirements-for-sso-identity-federation.md
+│   ├── scs-0301-v1-naming-conventions.md
 │   ├── scs-0400-v1-status-page-create-decision.md
 │   ├── scs-0401-v1-status-page-reference-implementation-decision.md
 │   ├── scs-0402-v1-status-page-openapi-spec-decision.md
