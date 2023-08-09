@@ -40,6 +40,7 @@
 │   │       │   ├── cluster-mgmt-capi-mgmt-node.md
 │   │       │   ├── containter-registry-configuration.md
 │   │       │   ├── create-new-cluster.md
+│   │       │   ├── custom-ca.md
 │   │       │   ├── managing-many-clusters.md
 │   │       │   ├── multi-az-and-multi-cloud-environments.md
 │   │       │   ├── testing.md
