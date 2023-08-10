@@ -67,18 +67,20 @@
 │   │   └── requirements.md
 │   ├── operations
 │   │   ├── iaas
-│   │   │   └── LBaaS
-│   │   │       ├── Amphora-diagram.drawio
-│   │   │       ├── Amphora-diagram.png
-│   │   │       ├── LoadbalancerShema.drawio
-│   │   │       ├── LoadbalancerShema1.png
-│   │   │       ├── dsr.drawio
-│   │   │       ├── dsr.png
-│   │   │       ├── lbaas.md
-│   │   │       ├── natbased.drawio
-│   │   │       ├── natbased.png
-│   │   │       ├── reverse-proxy.drawio
-│   │   │       └── reverse-proxy.png
+│   │   │   ├── LBaaS
+│   │   │   │   ├── Amphora-diagram.drawio
+│   │   │   │   ├── Amphora-diagram.png
+│   │   │   │   ├── LoadbalancerShema.drawio
+│   │   │   │   ├── LoadbalancerShema1.png
+│   │   │   │   ├── dsr.drawio
+│   │   │   │   ├── dsr.png
+│   │   │   │   ├── lbaas.md
+│   │   │   │   ├── natbased.drawio
+│   │   │   │   ├── natbased.png
+│   │   │   │   ├── reverse-proxy.drawio
+│   │   │   │   └── reverse-proxy.png
+│   │   │   └── metering
+│   │   │       └── meter_configuration.md
 │   │   ├── iam
 │   │   │   └── intra-SCS-federation-setup-description-for-osism-doc-operations.md
 │   │   ├── kaas
