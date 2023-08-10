@@ -9,6 +9,7 @@
 │       │   ├── clouds-public.yaml
 │       │   ├── clouds.yaml.sample
 │       │   ├── getting-started-openstack.md
+│       │   ├── getting_started_openstack_anim.gif
 │       │   ├── plusserver-gx-scs.md
 │       │   └── wavestack.md
 │       ├── communication
