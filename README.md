@@ -143,6 +143,7 @@
 ├── standards
 │   ├── scs-0001-v1-sovereign-cloud-standards.md
 │   ├── scs-0002-v1-standards-docs-org.md
+│   ├── scs-0002-v2-standards-docs-org.md
 │   ├── scs-0003-v1-sovereign-cloud-standards-yaml.md
 │   ├── scs-0100-v1-flavor-naming.md
 │   ├── scs-0100-v2-flavor-naming.md
