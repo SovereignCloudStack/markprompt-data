@@ -35,6 +35,13 @@
 │       ├── collaboration.md
 │       └── license-considerations.md
 ├── docs
+│   ├── 06-releases
+│   │   ├── Release0.md
+│   │   ├── Release1.md
+│   │   ├── Release2.md
+│   │   ├── Release3.md
+│   │   ├── Release4.md
+│   │   └── ReleaseX.md
 │   ├── k8s-cluster-api-provider
 │   │   └── doc
 │   │       ├── usage
